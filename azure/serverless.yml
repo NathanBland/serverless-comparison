@@ -1,0 +1,56 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service: azure-mongo-test # NOTE: update this with your service name
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+# frameworkVersion: "=X.X.X"
+
+provider:
+  name: azure
+  location: East US
+  runtime: nodejs8.10
+  stage: dev
+  environment:
+    DB_URI: ${env:DB_URI}
+plugins:
+  - serverless-azure-functions
+
+# you can add packaging information here
+package:
+ include:
+   - features/**
+   - ../common/models/**
+#  exclude:
+#    - exclude-me.js
+#    - exclude-me-dir/**
+
+functions:
+  createDocument:
+    handler: features/document/create.createDocument
+    events:
+      - http: true
+        x-azure-settings:
+          methods: #<array> [GET, POST, PUT, DELETE], default - all
+                - POST
+          route: document #<string>, default - <function name>
+  readDocument:
+    handler: features/document/read.readDocument
+    events:
+      - http: true
+        x-azure-settings:
+          methods: #<array> [GET, POST, PUT, DELETE], default - all
+                - GET
+          route: document #<string>, default - <function name>
+
