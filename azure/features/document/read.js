@@ -7,18 +7,18 @@ module.exports.readDocument = (context, req) => {
   
   let documentId = ''
   let query = {}
-  if (req.params) {
+  if (req.params.id) {
     query = {_id: req.params.id}
   }
   Document.db.once('open', () => {
-    Document.findOne(query)
-    .then(document => {
+    Document.find(query).lean()
+    .then(documents => {
       Document.db.close()
       return context.done(null, {
         status: 200,
-        body: {
-          document
-        }
+        body: JSON.stringify({
+          documents
+        })
       })
     })
     .catch(err => {

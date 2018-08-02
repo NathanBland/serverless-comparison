@@ -11,14 +11,12 @@ module.exports.readDocument = (event, context, callback) => {
     query = {_id: event.pathParameters.id}
   }
   Document.db.once('open', () => {
-    Document.findOne(query)
-    .then(document => {
+    Document.find(query)
+    .then(documents => {
       Document.db.close()
       return callback(null, {
         statusCode: 200,
-        body: JSON.stringify({
-          document
-        })
+        body: documents
       })
     })
     .catch(err => {
