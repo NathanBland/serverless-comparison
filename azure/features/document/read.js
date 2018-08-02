@@ -16,9 +16,7 @@ module.exports.readDocument = (context, req) => {
       Document.db.close()
       return context.done(null, {
         status: 200,
-        body: JSON.stringify({
-          documents
-        })
+        body: documents
       })
     })
     .catch(err => {

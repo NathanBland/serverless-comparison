@@ -54,5 +54,5 @@ functions:
           authLevel: anonymous
           methods: #<array> [GET, POST, PUT, DELETE], default - all
                 - GET
-          route: document #<string>, default - <function name>
+          route: document/{id?} #<string>, default - <function name>
 
