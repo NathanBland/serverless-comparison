@@ -45,6 +45,7 @@ functions:
           methods: #<array> [GET, POST, PUT, DELETE], default - all
                 - POST
           route: document #<string>, default - <function name>
+          authLevel: anonymous
   readDocument:
     handler: features/document/read.readDocument
     events:
@@ -53,4 +54,5 @@ functions:
           methods: #<array> [GET, POST, PUT, DELETE], default - all
                 - GET
           route: document #<string>, default - <function name>
+          authLevel: anonymous
 

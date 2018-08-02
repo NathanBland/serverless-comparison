@@ -6,7 +6,7 @@
             "direction": "in",
             "name": "req",
             "route": "document",
-            "authLevel": "function",
+            "authLevel": "anonymous",
             "methods": [
                 "GET"
             ]

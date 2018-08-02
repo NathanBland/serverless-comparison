@@ -4,7 +4,7 @@ Mongoose.Promise = global.Promise
 
 module.exports.createDocument = (event, context, callback) => {
   const mongoose = Mongoose.createConnection(process.env.DB_URI)
-  const Document = require('../../../common/models/document')(mongoose, Mongoose)
+  const Document = require('../../models/document')(mongoose, Mongoose)
   const body = JSON.parse(event.body)
 
   if (body.content.length < 1) {

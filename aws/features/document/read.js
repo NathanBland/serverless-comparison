@@ -3,7 +3,7 @@ Mongoose.Promise = global.Promise
 
 module.exports.readDocument = (event, context, callback) => {
   const mongoose = Mongoose.createConnection(process.env.DB_URI)
-  const Document = require('../../../common/models/document')(mongoose, Mongoose)
+  const Document = require('../../models/document')(mongoose, Mongoose)
   
   let documentId = ''
   let query = {}
